@@ -3,10 +3,11 @@ const express = require('express')
 const app = express()
 
 
-require('./startup/logging')()
+// require('./startup/logging')()
 require('./startup/db')()
 require('./startup/config')(app)
 require('./startup/validation')()
+require('./startup/routes')(app)
 
 
 const PORT = process.env.PORT || 3000
