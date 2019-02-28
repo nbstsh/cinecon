@@ -1,0 +1,20 @@
+{
+  "name": "cinecon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.0.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.16",
+    "winston": "2.*",
+    "winston-mongodb": "^3.0.0",
+    "express-async-errors": "^3.1.1"
+  }
+}
