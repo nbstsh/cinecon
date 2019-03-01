@@ -27,6 +27,8 @@ const User = mongoose.model('User', new mongoose.Schema({
     }
 }))
 
+
+
 const validateUser = (user) => {
     const schema = {
         name: Joi.string().min(1).max(255).required(),
@@ -35,7 +37,7 @@ const validateUser = (user) => {
         isAdmin: Joi.boolean()
     }
 
-    return Joi.validatet(user, schema)
+    return Joi.validate(user, schema)
 }
 
 
