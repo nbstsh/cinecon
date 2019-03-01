@@ -64,4 +64,4 @@ const validateMovie = (movie) => {
 
 
 exports.Movie = Movie
-exports.validate = validateMovie
+exports.validateMovie = validateMovie
