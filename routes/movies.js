@@ -3,6 +3,7 @@ const router = express.Router()
 const validate  = require('../middleware/validate')
 const validateObjectId = require('../middleware/validateObjectId')
 const auth = require('../middleware/auth')
+const admin = require('../middleware/admin')
 const _ = require('lodash')
 const { Movie, validateMovie } = require('../models/Movie')
 const props = ['title', 'director', 'releaseYear', 'genre', 'runningTime', 'starring', 'country']
@@ -13,7 +14,7 @@ router.get('/',  async (req, res) => {
     res.send(movies)
 })
 
-router.post('/', [auth, validate(validateMovie)], async (req, res) => {
+router.post('/', [auth, admin, validate(validateMovie)], async (req, res) => {
     const movie = new Movie(
         _.pick(req.body, props)
     )
@@ -22,14 +23,14 @@ router.post('/', [auth, validate(validateMovie)], async (req, res) => {
     res.send(movie)
 })
 
-router.put('/:id', [auth, validateObjectId, validate(validateMovie)], async (req, res) => {
+router.put('/:id', [auth, admin, validateObjectId, validate(validateMovie)], async (req, res) => {
     const movie = await Movie.findByIdAndUpdate(req.params.id,  _.pick(req.body, props), { new: true })
     if (!movie) return res.status(404).send('Movie with given id was not found.')
 
     res.send(movie)
 })
 
-router.delete('/:id', [auth, validateObjectId], async (req, res) => {
+router.delete('/:id', [auth, admin, validateObjectId], async (req, res) => {
     const movie = await Movie.findByIdAndDelete(req.params.id)
     if (!movie) return res.status(404).send('Movie with given id was not found.')
     
