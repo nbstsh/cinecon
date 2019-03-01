@@ -79,3 +79,5 @@
 {"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:11:23.918Z"}
 {"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:12:45.598Z"}
 {"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:12:46.511Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:32:30.497Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:32:30.555Z"}
