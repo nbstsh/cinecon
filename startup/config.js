@@ -1,6 +1,8 @@
 const config = require('config')
 
 
-module.exports = (app) => {
-    // TODO jwtPrivateKey
+module.exports = () => {
+    if (!config.get('jwtPrivateKey')){
+        throw new Error('FATAL ERROR: jwtPrivateKey is not defined.')
+    }
 }
