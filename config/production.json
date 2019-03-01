@@ -1,0 +1,9 @@
+{
+    "db": {
+        "prefix": "mongodb+srv",
+        "userName": "cineconuser",
+        "password": "",
+        "host": "cluster0-gq8fg.mongodb.net",
+        "name": "cinecon"
+    }
+}

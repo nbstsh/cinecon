@@ -1,3 +1,6 @@
 {
-    "jwtPrivateKey": "cinecon_jwtPrivateKey"
+    "jwtPrivateKey": "cinecon_jwtPrivateKey",
+    "db": {
+        "password": "cinecon_dbPassword"
+    }
 }

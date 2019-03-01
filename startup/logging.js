@@ -2,6 +2,7 @@ const config = require('config')
 const winston = require('winston')
 require('winston-mongodb')
 require('express-async-errors')
+const { getDBConnectionStr } = require('./helper')
 
 module.exports = function() {
     
@@ -16,7 +17,7 @@ module.exports = function() {
 
     winston.add(winston.transports.File, { filename: 'logfile.log' })
     winston.add(winston.transports.MongoDB, {
-        db: config.get('db'),
+        db: getDBConnectionStr(),
         level: 'warn'
     })
 }

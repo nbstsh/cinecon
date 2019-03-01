@@ -1,3 +1,9 @@
 {
-    "db": "mongodb://localhost:27017/cinecon"
+    "db": {
+        "prefix": "mongodb",
+        "userName": "cineconuser",
+        "password": "",
+        "host": "localhost:27017",
+        "dbName": "cinecon"
+    }
 }
