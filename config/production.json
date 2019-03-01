@@ -4,6 +4,6 @@
         "userName": "cineconuser",
         "password": "",
         "host": "cluster0-gq8fg.mongodb.net",
-        "name": "cinecon"
+        "dbName": "cinecon"
     }
 }

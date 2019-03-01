@@ -16,8 +16,8 @@ module.exports = function() {
     })
 
     winston.add(winston.transports.File, { filename: 'logfile.log' })
-    winston.add(winston.transports.MongoDB, {
-        db: getDBConnectionStr(),
-        level: 'warn'
-    })
+    // winston.add(winston.transports.MongoDB, {
+    //     db: getDBConnectionStr(),
+    //     level: 'warn'
+    // })
 }

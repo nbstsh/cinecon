@@ -65,3 +65,17 @@
 {"level":"info","message":"Connected mongodb://cineconuser:password@localhost:27017/cinecon","timestamp":"2019-03-01T12:39:24.377Z"}
 {"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T12:46:59.924Z"}
 {"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T12:46:59.986Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T13:44:46.651Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T13:45:01.666Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T13:58:27.076Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T13:58:52.373Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T13:59:56.483Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T13:59:56.544Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:08:46.709Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:09:11.250Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:09:44.663Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:09:45.618Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:11:22.888Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:11:23.918Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:12:45.598Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:12:46.511Z"}
