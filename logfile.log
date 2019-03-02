@@ -81,3 +81,9 @@
 {"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:12:46.511Z"}
 {"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-01T14:32:30.497Z"}
 {"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-01T14:32:30.555Z"}
+{"level":"info","message":"Start listening on port 3000","timestamp":"2019-03-02T09:32:37.021Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-02T09:32:37.070Z"}
+{"level":"info","message":"Start listening on port 3001","timestamp":"2019-03-02T09:34:47.049Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-02T09:34:47.101Z"}
+{"level":"info","message":"Start listening on port 3001","timestamp":"2019-03-02T09:38:17.233Z"}
+{"level":"info","message":"Connected to MongoDB.","timestamp":"2019-03-02T09:38:17.285Z"}
