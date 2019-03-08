@@ -11,7 +11,7 @@ module.exports = function(app) {
     app.use(cors)
     app.use('/api/movies', movies)
     app.use('/api/users', users)
-    app.use('./api/genres', genres)
+    app.use('/api/genres', genres)
     app.use('/api/auth', auth)
     app.use(error)
 }
