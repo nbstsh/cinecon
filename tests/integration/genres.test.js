@@ -24,7 +24,7 @@ describe('/api/genres', () => {
     })
 
 
-    describe('get /', () => {
+    describe('GET /', () => {
         const exec = () => {
             return request(server)
                 .get(DEFAULT_PATH + '/')
@@ -47,7 +47,7 @@ describe('/api/genres', () => {
     })
 
     
-    describe('post /', () => {
+    describe('POST /', () => {
         const exec = () => {
             return request(server)
                 .post(DEFAULT_PATH + '/')
@@ -105,7 +105,7 @@ describe('/api/genres', () => {
     })
 
 
-    describe('put /:id', () => {
+    describe('PUT /:id', () => {
         const exec = () => {
             return request(server)
                 .put(DEFAULT_PATH + `/${id}`)
@@ -181,5 +181,63 @@ describe('/api/genres', () => {
         })
     })
 
+
+    describe('DELETE /:id', () => {
+
+        exec = () => {
+            return request(server)
+                .delete(DEFAULT_PATH + `/${id}`)
+                .set('x-auth-token', token)
+        }
+
+        beforeEach(async () => {
+            name = 'a'
+            color = '#000000'
+            genre = new Genre({ name, color })
+            await genre.save()
+
+            token = jwt.sign({ _id: new ObjectId().toHexString(), isAdmin: true }, config.get('jwtPrivateKey'))
+            id = genre._id
+        })
+
+        it('should return 401 if client is not logged in', async () => {
+            token = ''
+
+            const res = await exec()
+
+            expect(res.status).toBe(401)
+        })
+
+
+        it('should return 403 if client is not admin user', async () => {
+            token = jwt.sign({ _id: new ObjectId().toHexString(), isAdmin: false }, config.get('jwtPrivateKey'))
+
+            const res = await exec()
+
+            expect(res.status).toBe(403)
+        })
+
+        it('should return 404 if no genre with given id exists.', async () => {
+            id = 'a'
+
+            const res = await exec()
+
+            expect(res.status).toBe(404)
+        })
+
+        it('shoudl return genre if it is valid.', async () => {
+            const res = await exec()
+
+            expect(res.body).toMatchObject({ name, color })
+        })
+
+        it('should delete genre if it is valid.', async () => {
+            await exec()
+
+            const res = await Genre.findById(genre._id)
+
+            expect(res).toBeNull()
+        })
+    })
 
 })
