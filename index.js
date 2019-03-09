@@ -10,4 +10,6 @@ require('./startup/routes')(app)
 require('./startup/prod')(app)
 
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => winston.info(`Start listening on port ${PORT}`))
+const server = app.listen(PORT, () => winston.info(`Start listening on port ${PORT}`))
+
+module.exports = server

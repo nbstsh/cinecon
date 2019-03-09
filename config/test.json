@@ -1,3 +1,10 @@
 {
-    "jwtPrivateKey": ""
+    "jwtPrivateKey": "1234",
+    "db": {
+        "prefix": "mongodb",
+        "userName": "cineconuser",
+        "password": "",
+        "host": "localhost:27017",
+        "dbName": "cinecon_test"
+    }
 }
