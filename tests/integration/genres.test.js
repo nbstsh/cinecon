@@ -240,4 +240,42 @@ describe('/api/genres', () => {
         })
     })
 
+    
+    describe('GET /:id', () => {
+        const exec = () => {
+            return request(server)
+                .get(DEFAULT_PATH + `/${id}`)
+        }
+
+        beforeEach(async () => {
+            name = 'a'
+            color = '#000000'
+            genre = new Genre({ name, color })
+            await genre.save()
+            id = genre._id
+        })
+
+        it('shoudl return 404 if invalid id is passed', async () => {
+            id = 'a'
+
+            const res = await exec()
+
+            expect(res.status).toBe(404)
+        })
+
+        it('should return 404 if no genre with given id exists', async () => {
+            id = new ObjectId().toHexString
+
+            const res = await exec()
+
+            expect(res.status).toBe(404)
+        })
+
+        it('should return genre if it is valid', async () => {
+            const res = await exec()
+
+            expect(res.body).toMatchObject({ name, color })
+        })
+    })
+
 })
