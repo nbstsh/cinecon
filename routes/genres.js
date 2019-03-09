@@ -22,7 +22,7 @@ router.post('/', [auth, admin, validate(validateGenre)], async (req, res) => {
 })
 
 router.put('/:id', [auth, admin, validateObjectId, validate(validateGenre)], async (req, res) => {
-    const genre = await Genre.findByIdAndUpdate(req.params.id, _.pick(req.body, props))
+    const genre = await Genre.findByIdAndUpdate(req.params.id, _.pick(req.body, props), { new: true })
     if (!genre) return res.status(404).send('The genre with given id was not found.')
 
     res.send(genre)

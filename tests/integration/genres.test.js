@@ -1,18 +1,17 @@
 const request = require('supertest')
 const { Genre } = require('../../models/Genre')
 const jwt = require('jsonwebtoken')
-const mongoose = require('mongoose')
+const ObjectId = require('mongoose').Types.ObjectId
 const config = require('config')
 
 describe('/api/genres', () => {
     const DEFAULT_PATH = '/api/genres'
     let server 
 
+    let id
     let name 
     let color
     let genre
-    let _id
-    let isAdmin
     let token
 
     beforeEach(async () => {
@@ -59,7 +58,7 @@ describe('/api/genres', () => {
         beforeEach(async () => {
             name = 'a'
             color = '#000000'
-            _id = new mongoose.Types.ObjectId().toHexString()
+            _id = new ObjectId().toHexString()
             isAdmin = true
             token = jwt.sign({ _id, isAdmin }, config.get('jwtPrivateKey'))
         })
@@ -103,7 +102,83 @@ describe('/api/genres', () => {
             
             expect(genre).toMatchObject({ name, color })
         })
-        
+    })
+
+
+    describe('put /:id', () => {
+        const exec = () => {
+            return request(server)
+                .put(DEFAULT_PATH + `/${id}`)
+                .set('x-auth-token', token)
+                .send({ name, color })
+        }
+
+        beforeEach(async () => {
+            genre = new Genre({
+                name: 'a',
+                color: '#000000'
+            })
+            await genre.save()
+
+            id = genre._id
+            token = jwt.sign({ _id: new ObjectId().toHexString(),isAdmin: true}, config.get('jwtPrivateKey'))
+            name = 'b'
+            color = '#aaaaaa'
+        })
+
+        it('should return 401 if client is not logged in', async () => {
+            token = ''
+
+            const res = await exec()
+
+            expect(res.status).toBe(401)
+        })
+
+        it('should return 403 if client is not admin', async () => {
+            token = jwt.sign({ _id: new ObjectId().toHexString, isAdmin: false }, config.get('jwtPrivateKey'))
+
+            const res = await exec()
+
+            expect(res.status).toBe(403)
+        })
+
+        it('sould return 404 if no genre with given id exists', async () => {
+            id = new ObjectId().toHexString()
+
+            const res = await exec()
+
+            expect(res.status).toBe(404)
+        })
+
+        it('shoudl return 404 if invalid id is passed', async () => {
+            id = '123'
+
+            const res = await exec()
+
+            expect(res.status).toBe(404)
+        })
+
+        it('should reutrn 400 if invalid name is passed', async () => {
+            name = ''
+            
+            const res = await exec()
+
+            expect(res.status).toBe(400)
+        })
+
+        it('should return updated genre if it is valid', async () => {
+            const res = await exec()
+
+            expect(res.body).toMatchObject({ name, color })
+        })
+
+        it('shoud update genre in DB if it is valid', async () => {
+            await exec()
+
+            const updatedGenre = await Genre.findById(genre._id)
+                
+            expect(updatedGenre).toMatchObject({ name, color })
+        })
     })
 
 
