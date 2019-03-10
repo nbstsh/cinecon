@@ -10,7 +10,7 @@ const props = ['title', 'director', 'releaseYear', 'genre', 'runningTime', 'star
 
 
 router.get('/',  async (req, res) => {
-    const movies = await Movie.find()
+    const movies = await Movie.find().populate('genre', '-__v')
     res.send(movies)
 })
 
@@ -38,7 +38,7 @@ router.delete('/:id', [auth, admin, validateObjectId], async (req, res) => {
 })
 
 router.get('/:id', validateObjectId, async (req, res) => {
-    const movie = await Movie.findById(req.params.id)
+    const movie = await Movie.findById(req.params.id).populate('genre', '-__v')
     if (!movie) return res.status(404).send('Movie with given id was not found')
 
     res.send(movie)
