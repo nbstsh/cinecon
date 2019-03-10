@@ -22,9 +22,8 @@ const movieSchema = new mongoose.Schema({
         }
     },
     genre: {
-        type: String,
-        minlength: 1,
-        maxlength: 255
+        type: mongoose.Types.ObjectId,
+        ref: 'Genre'
     },
     runningTime: {
         type: Number,
