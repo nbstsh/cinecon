@@ -52,7 +52,7 @@ const validateMovie = (movie) => {
         title: Joi.string().min(1).max(255).required(),
         director: Joi.string().min(1).max(255),
         releaseYear: Joi.number().min(1900).max(currentYear),
-        genre: Joi.ObjectId(),
+        genre: Joi.objectId(),
         runningTime: Joi.number().min(1).max(1024),
         starring: Joi.string().min(1).max(255),
         country: Joi.string().min(1).max(50)
