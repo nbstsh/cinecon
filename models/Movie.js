@@ -1,5 +1,6 @@
 const Joi = require('joi')
 const mongoose = require('mongoose')
+Joi.objectId = require('joi-objectid')(Joi)
 
 const movieSchema = new mongoose.Schema({
     title: {
@@ -21,10 +22,10 @@ const movieSchema = new mongoose.Schema({
             message: `releaseYear should should be before ${new Date().getFullYear()}`
         }
     },
-    genre: {
-        type: mongoose.Types.ObjectId,
+    genres: [{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Genre'
-    },
+    }],
     runningTime: {
         type: Number,
         min: 1,
@@ -52,7 +53,7 @@ const validateMovie = (movie) => {
         title: Joi.string().min(1).max(255).required(),
         director: Joi.string().min(1).max(255),
         releaseYear: Joi.number().min(1900).max(currentYear),
-        genre: Joi.objectId(),
+        genres: Joi.array().items(Joi.objectId()),
         runningTime: Joi.number().min(1).max(1024),
         starring: Joi.string().min(1).max(255),
         country: Joi.string().min(1).max(50)
