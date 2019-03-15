@@ -6,11 +6,11 @@ const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
 const _ = require('lodash')
 const { Movie, validateMovie } = require('../models/Movie')
-const props = ['title', 'director', 'releaseYear', 'genre', 'runningTime', 'starring', 'country']
+const props = ['title', 'director', 'releaseYear', 'genres', 'runningTime', 'starring', 'country']
 
 
 router.get('/',  async (req, res) => {
-    const movies = await Movie.find().populate('genre', '-__v')
+    const movies = await Movie.find().populate('genres', '-__v')
     res.send(movies)
 })
 
@@ -38,7 +38,7 @@ router.delete('/:id', [auth, admin, validateObjectId], async (req, res) => {
 })
 
 router.get('/:id', validateObjectId, async (req, res) => {
-    const movie = await Movie.findById(req.params.id).populate('genre', '-__v')
+    const movie = await Movie.findById(req.params.id).populate('genres', '-__v')
     if (!movie) return res.status(404).send('Movie with given id was not found')
 
     res.send(movie)
