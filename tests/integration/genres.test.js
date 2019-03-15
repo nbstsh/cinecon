@@ -14,7 +14,7 @@ describe('/api/genres', () => {
     let genre
     let token
 
-    beforeEach(async () => {
+    beforeEach(() => {
         server = require('../../index')
     })
 
