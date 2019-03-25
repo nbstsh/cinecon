@@ -231,4 +231,38 @@ describe('validateMovie', () => {
         })
     })
 
+    describe('thumnail', () => {
+        it('should return error if country is less than 1 characters.', () => {
+            movie.country = ''
+    
+            const error = exec()
+    
+            expect(error).not.toBeNull()
+        })
+    
+        it('should return error if country is more than 1024 characters.', () =>  {
+            movie.country = new Array(1026).join('a')
+
+            const error = exec()
+    
+            expect(error).not.toBeNull()
+        })
+    
+        it('should return error if country is not string.', () => {
+            movie.country = 1
+    
+            const error = exec()
+    
+            expect(error).not.toBeNull()
+        })
+
+        it('should not return error event if country is not provided.', () => {
+            delete movie.country 
+            
+            const error = exec()
+    
+            expect(error).toBeNull()
+        })
+    })
+
 })

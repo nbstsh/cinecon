@@ -6,7 +6,7 @@ const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
 const _ = require('lodash')
 const { Movie, validateMovie } = require('../models/Movie')
-const props = ['title', 'director', 'releaseYear', 'genres', 'runningTime', 'starring', 'country']
+const props = ['title', 'director', 'releaseYear', 'genres', 'runningTime', 'starring', 'country', 'thumnail']
 
 
 router.get('/',  async (req, res) => {
