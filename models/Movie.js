@@ -40,6 +40,11 @@ const movieSchema = new mongoose.Schema({
         type: String,
         minlength: 1,
         maxlength: 50
+    },
+    thumnail: {
+        type: String,
+        minlength: 1,
+        maxlength: 1024
     }
 })
 
@@ -56,7 +61,8 @@ const validateMovie = (movie) => {
         genres: Joi.array().items(Joi.objectId()),
         runningTime: Joi.number().min(1).max(1024),
         starring: Joi.string().min(1).max(255),
-        country: Joi.string().min(1).max(50)
+        country: Joi.string().min(1).max(50),
+        thumnail: Joi.string().min(1).max(1024)
     }
 
     return Joi.validate(movie, schema)
